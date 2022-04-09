@@ -3,11 +3,15 @@
 #include <string.h>
 #include <string>
 using namespace std;
-bool inicio, aldea_o_visita=0, conoir;
-int interaccionesa=0;
-string personaje, items[2][2],familiara;
+bool inicio, aldea_o_visita=0, conoir,mechon,tienda,comprar, reiniciar;
+int interaccionesa=0, dinero=0;
+string personaje, items[2][2],familiara,gente,limpiapantallas;
 int main()
 {
+	items[0][0] = "nada";
+	items[1][0] = "nada";
+	items[0][1] = "nada";
+	items[1][1] = "nada";
 	cout << "hola y se bienvenido a esta historia interactiva en la cual tu objetivo es derrotar al  jefe final de la masmorra asi que equipate bien consigue dinero y haz lo posible para poder conseguir" << endl;
 	cout << "comida recursos armaduras y armas, alistate para tu aventura ¿quieres iniciar este emocionante juego?(1 para si y cualquier otra cosa para no)" << endl;
 	cin >> inicio;
@@ -60,11 +64,99 @@ int main()
 		}
 		cout << "ya que terminaste de hablar con todos decides continuar pero tu familia te detiene para darte algo parece brillante y es como un anillo te ayudara a iluminar la obscuridad de la sala del jefe con la claridad de la familia" << endl;
 		items[1][0] = "fragmento_de_luz_familiar";
-		cout << "gracias por jugar voy a hacer  una parte 2" << endl;
+		cout << "genial con esto podre ver al jefe final" << endl;
 	}
-	else {
-		cout << "esta ruta aun no esta disponible espera al proximo parche" << endl;
-	}
+		cout << "vas en camino a la aldea pero te encuentras con un poco de pasto sospechoso quieres arrancarlo?(1 para si cualquier otra cosa para no " << endl;
+		cin >> mechon;
+		system("cls");
+		if (mechon) {
+			cout << "haz arrancado el mechon de pasto del suelo y encontraste una moneda de oro la cual es bastante valiosa lo suficiente para comprar un buen escudo de arco" << endl;
+			dinero = 1;
+		}
+		cout << "al entrar a la aldea hay 2 cosas 1 grupo de gente y una tienda pero recuerdas que es probable de que no puedas visitar la tienda despues de hablar con la gente entonces quieres ir a la tienda primero?(1 para si otro para no)" << endl;
+		cin >> tienda;
+		system("cls");
+		if (tienda) {
+			cout << "te resive el señor de la tienda y te pregunta si quieres comprar un escudo de arco por una moneda de oro(1para si otro para no)" << endl;
+			cin >> comprar;
+			system("cls");
+			if (comprar && dinero == 1) {
+				cout << "bien aqui tienes tu escudo" << endl;
+				items[0][1] = "escudo_de_arco";
+			}
+			if (comprar && dinero != 1) {
+				cout << "no te alcanzo lo siento" << endl;
+			}
+			cout << "el señor de la tienda dice que tenga un buen dia y cierra la tienda" << endl;
+			interaccionesa = 0;
+		}		for (int i = 0; interaccionesa <= 2; i++) {
+			cout << "te dirijes al grupon de gente y hay un hombre una mujer y un viejo amigo(para hablar con el hombre escrive (hombre) para la mujer escrive (mujer) y para hablar con tu viejo amigo escrive (amigo)" << endl;
+			cin >> gente;
+
+			if (gente == "hombre") {
+				cout << "tienes que detenerlo" << endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "mujer") {
+				cout << "vamos tu puedes" << endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "amigo") {
+				cout << "despierta tu lado agresivo" << endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente != "hombre" && gente != "mujer" && gente != "amigo") {
+				cout << "lo escriviste mal intenta de nuevo" << endl;
+			}
+		}
+		cout << "los tres te dicen ya tienes que irte toma esto ellos te dan un arco de flechas infinitas" << endl;
+		items[1][1] = "arco de flechas infinitas";
+		cout << "vas en camino a tu destino pero poco a poco las cosas se ponen peor empiezas a escuchar despierta levantate vamos pero no hay nadie ni nada antes parecian ser los animales eran los que te hablaban pero no hay nadie estas solo " << endl;
+		cout << "que pasa? por que todo se esta deshaciendo? despues de un rato despiertas en una sala de hozpital(presiona una tecla y enter para continuar" << endl;
+		cin >> limpiapantallas;
+		system("cls");
+		interaccionesa = 0;
+		for (int i = 0; interaccionesa <= 4; i++) {
+			cout << "al abrir los ojos ves a mucha gente la cual esta feliz entre ellos una doctor (doctor) una enfermera (enfermera) tu padre (padre) tu madre (madre) y tu (hermana) con quien hablas primero" << endl;
+			cin >> gente;
+
+			if (gente == "doctor") {
+				cout << "por fin despertaste lamentamos querer desconectarte por que creimos todos que ya no despertarias " <<personaje<< endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "enfermera") {
+				cout << "nos preocupo mucho tu estado de salud y nos llego a hacer penzar que no despertarias que bien que si lo lograste " <<personaje<< endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "padre") {
+				cout << "el te abraza y te dice que te te extraño ya queria que despertaras y que le hubiera dolido muchisimo que te hubieran desconectado " <<personaje<< endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "madre") {
+				cout << "les dije a todos que ivas a despertar antes de que te desconectaramos menos mal que si lo hiciste te quiero hijo bienvenido de vuelta " <<personaje<< endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+			if (gente == "hermana") {
+				cout << "hermanito despertaste por fin gracias no podia estar feliz sin ti " <<personaje<< endl;
+
+				interaccionesa = interaccionesa + 1;
+			}
+
+			if (gente != "doctor" && gente != "enfermera" && gente != "padre" && gente != "madre" && gente != "hermano") {
+				cout << "lo escriviste mal intenta de nuevo" << endl;
+			}
+		}
+		cout << "parece que te salvaste de la muerte eterna por poco pero todo lo que viviste en tu sueño se ha ido lo que tenias incluso en tu inventario no existio nada de la siguiente lista de cosas" << endl;
+		cout << items[0][0] << ", " << items[1][0] << ", " << items[0][1] << ", " << items[1][1] << ", " << "pero bueno por fin puedes seguir tu vida y ser feliz con tu verdadera familia recuerda que ounque no seas un heroe real tu familia y amigos te aprecian y necesitan fin " << endl;
+			return 0;
+	
 
 
 }
